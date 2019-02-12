@@ -26,13 +26,16 @@
 
 ## Installation
 
-[![NPM](https://nodei.co/npm/intelligo-cli.png?compact=true)](https://nodei.co/npm/intelligo-cli/)
+
+```bash
+$ npm install -g intelligo-cli
+```
 
 ## Quick Start
 
 Create the your bot project:
 
-```js
+```bash
 $ intelligo mybot && cd mybot
 ```
 
@@ -48,13 +51,13 @@ Set the values in `config/default.json` before running the bot. Using your Faceb
 
 Install dependencies:
 
-```js
+```bash
 $ npm install
 ```
 
 Start your bot server:
 
-```js
+```bash
 $ npm start
 ```
 

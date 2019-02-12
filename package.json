@@ -1,6 +1,6 @@
 {
   "name": "intelligo-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The command line tool for Intelligo framework",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,26 @@
   "bugs": {
     "url": "https://github.com/intelligo-systems/intelligo-cli/issues"
   },
+  "keywords":[
+    "ai",
+    "ai-bot",
+    "bot",
+    "builder",
+    "cli",
+    "chatbot",
+    "command-line-tool",
+    "conversation",
+    "messenger-bot",
+    "messenger",
+    "facebook",
+    "framework",
+    "intelligo",
+    "neural network",
+    "neural",
+    "network",
+    "neural-networks",
+    "machine-learning"
+  ],
   "homepage": "https://github.com/intelligo-systems/intelligo-cli#readme",
   "bin": {
     "intellig-cli": "./index.js",
