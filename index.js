@@ -1,25 +1,17 @@
 #!/usr/bin/env node
 
-var ejs = require('ejs')
 var fs = require('fs')
-var minimatch = require('minimatch')
 var mkdirp = require('mkdirp')
 var path = require('path')
 var program = require('commander')
 var readline = require('readline')
-var sortedObject = require('sorted-object')
 var util = require('util')
 
 var MODE_0666 = parseInt('0666', 8)
 var MODE_0755 = parseInt('0755', 8)
-var TEMPLATE_DIR = path.join(__dirname, '..', 'templates')
-var VERSION = require('../package').version
 
-var _exit = process.exit
-
-// Re-assign process.exit because of commander
-// TODO: Switch to a different command framework
-process.exit = exit
+var TEMPLATE_DIR = path.join(__dirname, '.', 'templates')
+var VERSION = require('./package').version
 
 // CLI
 
@@ -50,9 +42,8 @@ program
   .usage('[dir]')
   .parse(process.argv)
 
-if (!exit.exited) {
+
   main()
-}
 
 /**
  * Install an around function; AOP.
@@ -130,24 +121,19 @@ function createApplication (name, dir) {
     }
   }
 
-  // JavaScript
-  var app = loadTemplate('index.js')
-
   if (dir !== '.') {
     mkdir(dir, '.')
   }
 
   mkdir(dir, 'config')
 
-  copyTemplateMulti('config/default.json', dir + '/routes', '*.js')
   copyTemplate('config/default.json', path.join(dir, 'config/default.json'))
   copyTemplate('.gitignore', path.join(dir, '.gitignore'))
+  copyTemplate('index.js', path.join(dir, 'index.js'))
 
-  // write files
-  write(path.join(dir, 'index.js'), app.render())
   write(path.join(dir, 'package.json'), JSON.stringify(pkg, null, 2) + '\n')
 
-  var prompt = launchedFromCmd() ? '>' : '$'
+  var prompt = '$'
 
   if (dir !== '.') {
     console.log()
@@ -161,11 +147,8 @@ function createApplication (name, dir) {
   console.log()
   console.log('   run the app:')
 
-  if (launchedFromCmd()) {
-    console.log('     %s SET DEBUG=%s:* & npm start', prompt, name)
-  } else {
-    console.log('     %s DEBUG=%s:* npm start', prompt, name)
-  }
+  console.log('     %s npm start', prompt)
+  
 
   console.log()
 }
@@ -206,7 +189,7 @@ function main () {
   var destinationPath = program.args.shift() || '.'
 
   // App name
-  var appName = createAppName(path.resolve(destinationPath)) || 'hello-world'
+  var appName = createAppName(path.resolve(destinationPath)) || 'intelligo-bot'
 
   // Generate application
   emptyDirectory(destinationPath, function (empty) {
