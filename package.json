@@ -1,6 +1,6 @@
 {
   "name": "intelligo-cli",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "The command line tool for Intelligo framework",
   "main": "index.js",
   "scripts": {
