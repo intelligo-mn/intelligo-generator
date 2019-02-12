@@ -17,43 +17,29 @@ function init() {
 
   console.log('Creating new bot...')
 
-  fs.readFile(__dirname + '/templates/index.js', (err, data) => {
-    if (err) throw err
+  if (!fs.existsSync("intelligo-bot")){
+    fs.mkdirSync("intelligo-bot");
+  }
+  process.chdir('/intelligo-bot');
+  fs.readdir('templates/',function(err,files){
+      if(err) throw err;
+      files.forEach(function(file){
+        console.log('Copying '+file)
+        fs.writeFile(flie, data, (err) => {
+          if (err) throw err
+    
+          console.log('Copied '+file)
+        })
+      });
 
-    console.log('Copying index.js...')
-
-    fs.writeFile('index.js', data, (err) => {
-      if (err) throw err
-
-      console.log('Copied index.js...')
-    })
-  })
-
-  fs.readFile(__dirname + '/templates/package.json', (err, data) => {
-    if (err) throw err
-
-    console.log('Copying Package.json...')
-
-    fs.writeFile('package.json', data, (err) => {
-      if (err) throw err
-
-      console.log('Copied Package.json...')
       console.log('Installing Dependencies...')
 
       startCommand('npm install')
-    })
-  })
+  });
 }
 
 function startServer() {
   return startCommand('node --use_strict --harmony .',(error, stdout, stderr) => process.exit(1))
-}
-
-function console_out(rl, msg) {
-  process.stdout.clearLine()
-  process.stdout.cursorTo(0)
-  console.log(msg)
-  rl.prompt(true)
 }
 
 program
