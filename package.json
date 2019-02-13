@@ -1,6 +1,6 @@
 {
   "name": "intelligo-cli",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "The command line tool for Intelligo framework",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/intelligo-systems/intelligo-cli/issues"
   },
-  "keywords":[
+  "keywords": [
     "ai",
     "ai-bot",
     "bot",
@@ -43,6 +43,7 @@
   "dependencies": {
     "commander": "^2.19.0",
     "config": "^2.0.0",
+    "intelligo": "^0.8.8",
     "mkdirp": "^0.5.1",
     "path": "^0.12.7",
     "readline": "^1.3.0",

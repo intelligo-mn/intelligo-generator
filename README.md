@@ -1,7 +1,7 @@
 <p align="center">
 	<img src="https://raw.githubusercontent.com/intelligo-systems/intelligo/master/.github/intelligo-logo.png" width="200"/>
 <br>
-	<b>🛠️ Command line tool for Intelligo :robot: Framework</b>
+	<b>🛠️ Command line tool for Intelligo Framework</b>
 </p>
 <p align="center">
    <a href="https://www.npmjs.com/package/intelligo-cli">
@@ -13,7 +13,7 @@
     <a href="https://github.com/tortuvshin/">
         <img src="https://img.shields.io/github/followers/tortuvshin.svg?style=social&label=Follow"
             alt="Followers"></a>
-    <a href="https://github.com/intelligo-systems/intelligo/blob/master/LICENSE">
+    <a href="https://github.com/intelligo-systems/intelligo-cli/blob/master/LICENSE">
             <img alt="License" src="https://img.shields.io/github/license/intelligo-systems/intelligo-cli.svg?colorB=blue&style=flat-square">
            </a>
       <a href="https://twitter.com/intent/tweet?text=Wow:&url=https://github.com/intelligo-systems/intelligo">
