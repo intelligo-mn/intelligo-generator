@@ -5,7 +5,7 @@
 </p>
 <p align="center">
    <a href="https://www.npmjs.com/package/intelligo-cli">
-      <img alt="npm downloads" src="https://img.shields.io/npm/dt/intelligo.svg?style=flat-square">
+      <img alt="npm downloads" src="https://img.shields.io/npm/dt/intelligo-cli.svg?style=flat-square">
     </a>
     <a href="https://www.npmjs.com/package/intelligo-cli">
         <img alt="undefined" src="https://img.shields.io/npm/v/intelligo-cli.svg?style=flat-square">
@@ -36,7 +36,10 @@ $ npm install intelligo-cli -g
 Create the your bot project:
 
 ```bash
-$ intelligo mybot && cd mybot
+$ intelligo mybot
+```
+```bash
+$ cd mybot
 ```
 
 Set the values in `config/default.json` before running the bot. Using your Facebook Page's / App's `ACCESS_TOKEN`, `VERIFY_TOKEN` and `APP_SECRET`
@@ -63,4 +66,4 @@ $ npm start
 
 > Copyright (C) 2019 Intelligo Systems.  
 > Intelligo framework is open-sourced software licensed under the [MIT](https://opensource.org/licenses/MIT) license.  
-> (See the [LICENSE](https://github.com/intelligo-systems/intelligo/blob/master/LICENSE) file for the whole license text.)
+> (See the [LICENSE](https://github.com/intelligo-systems/intelligo-cli/blob/master/LICENSE) file for the whole license text.)
