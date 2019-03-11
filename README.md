@@ -62,6 +62,10 @@ Start your bot server:
 $ npm start
 ```
 
+## Documentation
+
+To check out docs, visit [intelligo.js.org](https://intellig.js.org).
+
 ## License
 
 > Copyright (C) 2019 Intelligo Systems.  
