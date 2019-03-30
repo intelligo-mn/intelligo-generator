@@ -130,7 +130,7 @@ function createApplication (name, dir) {
   mkdir(dir, 'config')
 
   copyTemplate('config/default.json', path.join(dir, 'config/default.json'))
-  copyTemplate('.gitignore', path.join(dir, '.gitignore'))
+  copyTemplate('gitignore_temp', path.join(dir, '.gitignore'))
   copyTemplate('index.js', path.join(dir, 'index.js'))
 
   write(path.join(dir, 'package.json'), JSON.stringify(pkg, null, 2) + '\n')
