@@ -13,7 +13,9 @@ var MODE_0755 = parseInt('0755', 8)
 var TEMPLATE_DIR = path.join(__dirname, '.', 'templates')
 var VERSION = require('./package').version
 
-// CLI
+var _exit = process.exit
+
+process.exit = exit
 
 around(program, 'optionMissingArgument', function (fn, args) {
   program.outputHelp()
@@ -42,9 +44,9 @@ program
   .usage('[dir]')
   .parse(process.argv)
 
-
+if (!exit.exited) {
   main()
-
+}
 /**
  * Install an around function; AOP.
  */
@@ -236,7 +238,27 @@ function renamedOption (originalName, newName) {
     return val
   }
 }
+function exit (code) {
+  // flush output for Node.js Windows pipe bug
+  // https://github.com/joyent/node/issues/6247 is just one bug example
+  // https://github.com/visionmedia/mocha/issues/333 has a good discussion
+  function done () {
+    if (!(draining--)) _exit(code)
+  }
 
+  var draining = 0
+  var streams = [process.stdout, process.stderr]
+
+  exit.exited = true
+
+  streams.forEach(function (stream) {
+    // submit empty write request and wait for completion
+    draining += 1
+    stream.write('', done)
+  })
+
+  done()
+}
 /**
  * Display a warning similar to how errors are displayed by commander.
  *
