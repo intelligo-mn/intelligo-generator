@@ -64,7 +64,7 @@ $ npm start
 
 ## Documentation
 
-To check out docs, visit [intelligo.js.org](https://intellig.js.org).
+To check out docs, visit [intelligo.js.org](https://intelligo.js.org).
 
 ## License
 
