@@ -1,6 +1,10 @@
 {
   "name": "intelligo-cli",
+<<<<<<< HEAD
   "version": "1.1.3",
+=======
+  "version": "1.1.5",
+>>>>>>> 4ce6753d4f056d51b66a85450d9fc63273b4a396
   "description": "The command line tool for Intelligo framework",
   "main": "index.js",
   "scripts": {
@@ -41,8 +45,8 @@
     "intelligo": "./index.js"
   },
   "dependencies": {
-    "commander": "^2.19.0",
-    "config": "^3.0.1",
+    "commander": "^2.20.0",
+    "config": "^3.1.0",
     "intelligo": "^0.9.3",
     "mkdirp": "^0.5.1",
     "path": "^0.12.7",
