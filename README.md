@@ -4,6 +4,9 @@
 	<b>🛠️ Command line tool for Intelligo Framework</b>
 </p>
 <p align="center">
+    <a href="https://ci.appveyor.com/project/tortuvshin/intelligo-cli">
+        <img alt="undefined" src="https://ci.appveyor.com/api/projects/status/eue1p0li7vf7hqt9?svg=true">
+    </a>
    <a href="https://www.npmjs.com/package/intelligo-cli">
       <img alt="npm downloads" src="https://img.shields.io/npm/dt/intelligo-cli.svg?style=flat-square">
     </a>
