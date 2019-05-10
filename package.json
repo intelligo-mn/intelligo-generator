@@ -1,6 +1,6 @@
 {
   "name": "intelligo-cli",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "description": "The command line tool for Intelligo framework",
   "main": "index.js",
   "scripts": {
@@ -16,6 +16,8 @@
     "url": "https://github.com/intelligo-systems/intelligo-cli/issues"
   },
   "keywords": [
+    "generator",
+    "bot-generator",
     "ai",
     "ai-bot",
     "bot",
