@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express'),
+      config = require('config'),
       Intelligo = require('intelligo');
 
 const app = express();
