@@ -119,7 +119,7 @@ function createBotApp (name, dir) {
     dependencies: {
       'config': '~3.0.1',
       'express': '~4.16.1',
-      'intelligo': '^0.8.7'
+      'intelligo': '^1.0.1'
     }
   }
 
