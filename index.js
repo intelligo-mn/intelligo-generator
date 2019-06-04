@@ -51,7 +51,7 @@ if (!exit.exited) {
  * Install an around function; AOP.
  */
 
-function around (obj, method, fn) {
+function around(obj, method, fn) {
   let old = obj[method]
 
   obj[method] = function () {
@@ -65,7 +65,7 @@ function around (obj, method, fn) {
  * Install a before function; AOP.
  */
 
-function before (obj, method, fn) {
+function before(obj, method, fn) {
   let old = obj[method]
 
   obj[method] = function () {
@@ -78,7 +78,7 @@ function before (obj, method, fn) {
  * Prompt for confirmation on STDOUT/STDIN
  */
 
-function confirm (msg, callback) {
+function confirm(msg, callback) {
   let rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -94,7 +94,7 @@ function confirm (msg, callback) {
  * Copy file from template directory.
  */
 
-function copyTemplate (from, to) {
+function copyTemplate(from, to) {
   write(to, fs.readFileSync(path.join(TEMPLATE_DIR, from), 'utf-8'))
 }
 
@@ -105,7 +105,7 @@ function copyTemplate (from, to) {
  * @param {string} dir
  */
 
-function createBotApp (name, dir) {
+function createBotApp(name, dir) {
   console.log()
 
   // Package
@@ -150,7 +150,7 @@ function createBotApp (name, dir) {
   console.log('   run the app:')
 
   console.log('     %s npm start', prompt)
-  
+
 
   console.log()
 }
@@ -161,7 +161,7 @@ function createBotApp (name, dir) {
  * @param {String} pathName
  */
 
-function createAppName (pathName) {
+function createAppName(pathName) {
   return path.basename(pathName)
     .replace(/[^A-Za-z0-9.-]+/g, '-')
     .replace(/^[-_.]+|-+$/g, '')
@@ -175,7 +175,7 @@ function createAppName (pathName) {
  * @param {Function} fn
  */
 
-function emptyDirectory (dir, fn) {
+function emptyDirectory(dir, fn) {
   fs.readdir(dir, function (err, files) {
     if (err && err.code !== 'ENOENT') throw err
     fn(!files || !files.length)
@@ -186,7 +186,7 @@ function emptyDirectory (dir, fn) {
  * Main program.
  */
 
-function main () {
+function main() {
   // Path
   let destinationPath = program.args.shift() || '.'
 
@@ -218,7 +218,7 @@ function main () {
  * @param {string} dir
  */
 
-function mkdir (base, dir) {
+function mkdir(base, dir) {
   let loc = path.join(base, dir)
 
   console.log('   \x1b[36mcreate\x1b[0m : ' + loc + path.sep)
@@ -232,17 +232,17 @@ function mkdir (base, dir) {
  * @param {String} newName
  */
 
-function renamedOption (originalName, newName) {
+function renamedOption(originalName, newName) {
   return function (val) {
     warning(util.format("option `%s' has been renamed to `%s'", originalName, newName))
     return val
   }
 }
-function exit (code) {
+function exit(code) {
   // flush output for Node.js Windows pipe bug
   // https://github.com/joyent/node/issues/6247 is just one bug example
   // https://github.com/visionmedia/mocha/issues/333 has a good discussion
-  function done () {
+  function done() {
     if (!(draining--)) _exit(code)
   }
 
@@ -265,7 +265,7 @@ function exit (code) {
  * @param {String} message
  */
 
-function warning (message) {
+function warning(message) {
   console.error()
   message.split('\n').forEach(function (line) {
     console.error('  warning: %s', line)
@@ -280,7 +280,7 @@ function warning (message) {
  * @param {String} str
  */
 
-function write (file, str, mode) {
+function write(file, str, mode) {
   fs.writeFileSync(file, str, { mode: mode || MODE_0666 })
   console.log('   \x1b[36mcreate\x1b[0m : ' + file)
 }
