@@ -1,6 +1,6 @@
 {
   "name": "intelligo-cli",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "description": "The command line tool for Intelligo framework",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/intelligo-systems/intelligo-cli.git"
+    "url": "https://github.com/intelligo-systems/intelligo-cli.git"
   },
   "author": "Intelligo Systems",
   "license": "MIT",
@@ -37,16 +37,27 @@
   ],
   "homepage": "https://intelligo.js.org",
   "bin": {
-    "intellig-cli": "./index.js",
+    "intelligo-cli": "./index.js",
     "intelligo": "./index.js"
   },
   "dependencies": {
     "commander": "^2.20.0",
     "config": "^3.1.0",
-    "intelligo": "^1.0.2",
     "mkdirp": "^0.5.1",
     "path": "^0.12.7",
     "readline": "^1.3.0",
-    "util": "^0.12.0"
+    "util": "^0.12.0",
+
+    "arg": "^4.1.0",
+    "chalk": "^2.4.2",
+    "covgen": "^3.1.0",
+    "esm": "^3.2.18",
+    "execa": "^1.0.0",
+    "gitignore": "^0.6.0",
+    "inquirer": "^6.2.2",
+    "listr": "^0.14.3",
+    "ncp": "^2.0.0",
+    "pkg-install": "^0.2.0",
+    "spdx-license-list": "^5.0.0"
   }
 }
