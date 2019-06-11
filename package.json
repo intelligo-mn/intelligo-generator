@@ -57,7 +57,7 @@
     "inquirer": "^6.2.2",
     "listr": "^0.14.3",
     "ncp": "^2.0.0",
-    "pkg-install": "^0.2.0",
+    "pkg-install": "^1.0.0",
     "spdx-license-list": "^5.0.0"
   }
 }
