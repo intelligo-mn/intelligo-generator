@@ -68,7 +68,7 @@ export async function createProject(options) {
   try {
     await access(templateDir, fs.constants.R_OK);
   } catch (err) {
-    console.error('%s Invalid template name', chalk.red.bold('ERROR'));
+    console.error('%s Invalid template name', chalk.red.bold('ERROR'), err);
     process.exit(1);
   }
 

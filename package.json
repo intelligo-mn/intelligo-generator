@@ -1,6 +1,6 @@
 {
   "name": "intelligo-cli",
-  "version": "1.2.18",
+  "version": "1.2.19",
   "description": "The command line tool for Intelligo framework",
   "main": "index.js",
   "scripts": {
@@ -37,9 +37,14 @@
   ],
   "homepage": "https://intelligo.js.org",
   "bin": {
-    "intelligo-cli": "./index.js",
-    "intelligo": "./index.js"
+    "intelligo-cli": "bin/intelligo",
+    "intelligo": "bin/intelligo"
   },
+  "files": [
+    "bin/",
+    "src/",
+    "templates/"
+  ],
   "dependencies": {
     "arg": "^4.1.0",
     "chalk": "^2.4.2",
