@@ -1,24 +1,22 @@
-#!/usr/bin/env node
-
-const fs = require('fs')
-const mkdirp = require('mkdirp')
-const path = require('path')
-const program = require('commander')
-const readline = require('readline')
-const util = require('util')
+import { readFileSync, readdir, writeFileSync } from 'fs';
+import { sync } from 'mkdirp';
+import { join, basename, resolve, sep } from 'path';
+import program, { outputHelp, name as _name, args as _args, force } from 'commander';
+import { createInterface } from 'readline';
+import { format } from 'util';
 
 const MODE_0666 = parseInt('0666', 8)
 const MODE_0755 = parseInt('0755', 8)
 
-const TEMPLATE_DIR = path.join(__dirname, '.', 'templates')
-const VERSION = require('./package').version
+const TEMPLATE_DIR = join(__dirname, '.', 'templates')
+import { version as VERSION } from './package';
 
 let _exit = process.exit
 
 process.exit = exit
 
 around(program, 'optionMissingArgument', function (fn, args) {
-  program.outputHelp()
+  outputHelp()
   fn.apply(this, args)
   return { args: [], unknown: [] }
 })
@@ -34,12 +32,11 @@ before(program, 'unknownOption', function () {
 
   // show help if not yet shown
   if (!this._helpShown) {
-    program.outputHelp()
+    outputHelp()
   }
 })
 
-program
-  .name('intelligo')
+_name('intelligo')
   .version(VERSION, '    --version')
   .usage('[dir]')
   .parse(process.argv)
@@ -51,7 +48,7 @@ if (!exit.exited) {
  * Install an around function; AOP.
  */
 
-function around (obj, method, fn) {
+function around(obj, method, fn) {
   let old = obj[method]
 
   obj[method] = function () {
@@ -65,7 +62,7 @@ function around (obj, method, fn) {
  * Install a before function; AOP.
  */
 
-function before (obj, method, fn) {
+function before(obj, method, fn) {
   let old = obj[method]
 
   obj[method] = function () {
@@ -78,8 +75,8 @@ function before (obj, method, fn) {
  * Prompt for confirmation on STDOUT/STDIN
  */
 
-function confirm (msg, callback) {
-  let rl = readline.createInterface({
+function confirm(msg, callback) {
+  let rl = createInterface({
     input: process.stdin,
     output: process.stdout
   })
@@ -94,8 +91,8 @@ function confirm (msg, callback) {
  * Copy file from template directory.
  */
 
-function copyTemplate (from, to) {
-  write(to, fs.readFileSync(path.join(TEMPLATE_DIR, from), 'utf-8'))
+function copyTemplate(from, to) {
+  write(to, readFileSync(join(TEMPLATE_DIR, from), 'utf-8'))
 }
 
 /**
@@ -105,7 +102,7 @@ function copyTemplate (from, to) {
  * @param {string} dir
  */
 
-function createBotApp (name, dir) {
+function createBotApp(name, dir) {
   console.log()
 
   // Package
@@ -119,7 +116,7 @@ function createBotApp (name, dir) {
     dependencies: {
       'config': '~3.0.1',
       'express': '~4.16.1',
-      'intelligo': '^1.0.1'
+      'intelligo': '^0.8.7'
     }
   }
 
@@ -129,12 +126,11 @@ function createBotApp (name, dir) {
 
   mkdir(dir, 'config')
 
-  copyTemplate('config/default.json', path.join(dir, 'config/default.json'))
-  copyTemplate('gitignore_temp', path.join(dir, '.gitignore'))
-  copyTemplate('index.js', path.join(dir, 'index.js'))
-  copyTemplate('README.md', path.join(dir, 'README.md'))
+  copyTemplate('config/default.json', join(dir, 'config/default.json'))
+  copyTemplate('gitignore_temp', join(dir, '.gitignore'))
+  copyTemplate('index.js', join(dir, 'index.js'))
 
-  write(path.join(dir, 'package.json'), JSON.stringify(pkg, null, 2) + '\n')
+  write(join(dir, 'package.json'), JSON.stringify(pkg, null, 2) + '\n')
 
   const prompt = '$'
 
@@ -151,7 +147,7 @@ function createBotApp (name, dir) {
   console.log('   run the app:')
 
   console.log('     %s npm start', prompt)
-  
+
 
   console.log()
 }
@@ -162,8 +158,8 @@ function createBotApp (name, dir) {
  * @param {String} pathName
  */
 
-function createAppName (pathName) {
-  return path.basename(pathName)
+function createAppName(pathName) {
+  return basename(pathName)
     .replace(/[^A-Za-z0-9.-]+/g, '-')
     .replace(/^[-_.]+|-+$/g, '')
     .toLowerCase()
@@ -176,8 +172,8 @@ function createAppName (pathName) {
  * @param {Function} fn
  */
 
-function emptyDirectory (dir, fn) {
-  fs.readdir(dir, function (err, files) {
+function emptyDirectory(dir, fn) {
+  readdir(dir, function (err, files) {
     if (err && err.code !== 'ENOENT') throw err
     fn(!files || !files.length)
   })
@@ -187,16 +183,16 @@ function emptyDirectory (dir, fn) {
  * Main program.
  */
 
-function main () {
+function main() {
   // Path
-  let destinationPath = program.args.shift() || '.'
+  let destinationPath = _args.shift() || '.'
 
   // App name
-  let appName = createAppName(path.resolve(destinationPath)) || 'intelligo-bot'
+  let appName = createAppName(resolve(destinationPath)) || 'intelligo-bot'
 
   // Generate application
   emptyDirectory(destinationPath, function (empty) {
-    if (empty || program.force) {
+    if (empty || force) {
       createBotApp(appName, destinationPath)
     } else {
       confirm('destination is not empty, continue? [y/N] ', function (ok) {
@@ -219,11 +215,11 @@ function main () {
  * @param {string} dir
  */
 
-function mkdir (base, dir) {
-  let loc = path.join(base, dir)
+function mkdir(base, dir) {
+  let loc = join(base, dir)
 
-  console.log('   \x1b[36mcreate\x1b[0m : ' + loc + path.sep)
-  mkdirp.sync(loc, MODE_0755)
+  console.log('   \x1b[36mcreate\x1b[0m : ' + loc + sep)
+  sync(loc, MODE_0755)
 }
 
 /**
@@ -233,17 +229,17 @@ function mkdir (base, dir) {
  * @param {String} newName
  */
 
-function renamedOption (originalName, newName) {
+function renamedOption(originalName, newName) {
   return function (val) {
-    warning(util.format("option `%s' has been renamed to `%s'", originalName, newName))
+    warning(format("option `%s' has been renamed to `%s'", originalName, newName))
     return val
   }
 }
-function exit (code) {
+function exit(code) {
   // flush output for Node.js Windows pipe bug
   // https://github.com/joyent/node/issues/6247 is just one bug example
   // https://github.com/visionmedia/mocha/issues/333 has a good discussion
-  function done () {
+  function done() {
     if (!(draining--)) _exit(code)
   }
 
@@ -266,7 +262,7 @@ function exit (code) {
  * @param {String} message
  */
 
-function warning (message) {
+function warning(message) {
   console.error()
   message.split('\n').forEach(function (line) {
     console.error('  warning: %s', line)
@@ -281,7 +277,7 @@ function warning (message) {
  * @param {String} str
  */
 
-function write (file, str, mode) {
-  fs.writeFileSync(file, str, { mode: mode || MODE_0666 })
+function write(file, str, mode) {
+  writeFileSync(file, str, { mode: mode || MODE_0666 })
   console.log('   \x1b[36mcreate\x1b[0m : ' + file)
 }
