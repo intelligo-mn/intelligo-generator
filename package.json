@@ -1,6 +1,6 @@
 {
   "name": "intelligo-cli",
-  "version": "1.2.19",
+  "version": "1.2.21",
   "description": "The command line tool for Intelligo framework",
   "main": "index.js",
   "scripts": {
@@ -53,7 +53,6 @@
     "covgen": "^3.1.0",
     "esm": "^3.2.18",
     "execa": "^1.0.0",
-    "fs": "0.0.1-security",
     "gitignore": "^0.6.0",
     "inquirer": "^6.2.2",
     "listr": "^0.14.3",
