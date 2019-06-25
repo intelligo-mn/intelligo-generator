@@ -1,8 +1,8 @@
 'use strict';
 
 const express = require('express'),
-      config = require('config'),
-      Intelligo = require('intelligo');
+  config = require('config'),
+  Intelligo = require('intelligo');
 
 const app = express();
 
@@ -19,13 +19,13 @@ bot.initWebhook();
 bot.on('message', (event) => {
 
   const senderID = event.sender.id,
-        message = event.message;
+    message = event.message;
 
   if (message.text) {
-      bot.sendTextMessage(senderID, "Hello world");
+    bot.sendTextMessage(senderID, "Hello world");
   }
 });
 app.set('port', process.env.PORT || 5000);
-app.listen(app.get('port'), function() {
+app.listen(app.get('port'), function () {
   console.log('Server is running on port', app.get('port'));
 });
