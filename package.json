@@ -1,8 +1,8 @@
 {
   "name": "intelligo-cli",
-  "version": "1.2.22",
+  "version": "1.2.24",
   "description": "The command line tool for Intelligo framework",
-  "main": "index.js",
+  "main": "bin/intelligo",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,7 +1,7 @@
 <p align="center">
 	<img src="https://raw.githubusercontent.com/intelligo-systems/intelligo/master/.github/intelligo-logo.png" width="200"/>
 <br>
-	<b>🛠️ Command line tool for Intelligo Framework</b>
+	<b>🛠️ Chatbot generator for Intelligo Framework</b>
 </p>
 <p align="center">
     <a href="https://ci.appveyor.com/project/tortuvshin/intelligo-cli">
@@ -25,7 +25,7 @@
 
 </p>
 
-🛠️ Command line tool for Intelligo Framework
+🛠️ Chatbot generator for Intelligo Framework
 
 ## Installation
 
