@@ -1,7 +1,8 @@
 import arg from 'arg';
 import inquirer from 'inquirer';
+
 import { createProject } from './intelligo-cli';
-import { version } from  '../package';
+
 function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
     {
@@ -22,6 +23,7 @@ function parseArgumentsIntoOptions(rawArgs) {
     skipPrompts: args['--yes'] || false,
     git: args['--git'] || false,
     template: args._[0],
+    projectName: args._[0],
     runInstall: args['--install'] || false,
     showVersion: args['--version'] || false,
   };
@@ -29,6 +31,8 @@ function parseArgumentsIntoOptions(rawArgs) {
 
 async function promptForMissingOptions(options) {
   const defaultTemplate = 'messenger';
+  const defaultName = 'intelligo-bot';
+
   if (options.skipPrompts) {
     return {
       ...options,
@@ -37,11 +41,23 @@ async function promptForMissingOptions(options) {
   }
 
   if (options.showVersion) {
-    console.log("Version: ");
-    return;
+    return {
+      ...options,
+      version: true,
+    };
   }
 
   const questions = [];
+
+  if (!options.projectName) {
+    questions.push({
+      type: 'input',
+      name: 'projectName',
+      message: 'What name would you like to use for the new project?',
+      default: defaultName,
+    });
+  }
+
   if (!options.template) {
     questions.push({
       type: 'list',
@@ -66,6 +82,7 @@ async function promptForMissingOptions(options) {
     ...options,
     template: options.template || answers.template,
     git: options.git || answers.git,
+    projectName: options.projectName || answers.projectName,
   };
 }
 
