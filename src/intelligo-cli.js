@@ -4,7 +4,7 @@ import fs from 'fs';
 import Listr from 'listr';
 import { mkdirp } from 'mkdirp';
 import ncp from 'ncp';
-import path from 'path';
+import  path from 'path';
 import { projectInstall } from 'pkg-install';
 import license from 'spdx-license-list/licenses/MIT';
 import { promisify } from 'util';
@@ -15,6 +15,8 @@ const writeFile = promisify(fs.writeFile);
 const copy = promisify(ncp);
 
 const MODE_0755 = parseInt('0755', 8)
+
+const TEMPLATE_DIR = path.join(__dirname, '../', 'templates')
 
 function mkdir(base, dir) {
   let loc = path.join(base, dir)
@@ -71,16 +73,14 @@ export async function createProject(options) {
   };
 
   options.projectName = createAppName(options.projectName);
-  options.targetDirectory = options.targetDirectory+"/"+options.projectName;
+  options.targetDirectory = path.join(options.targetDirectory, options.projectName);
 
   if (options.version) {
     console.log('Version: ', chalk.green.bold(version));
     process.exit(1);
   }
 
-  const templateDir = path.resolve(
-    new URL(import.meta.url).pathname.substring(),
-    '../../templates',
+  const templateDir = path.resolve(TEMPLATE_DIR,
     options.template.toLowerCase()
   );
 
