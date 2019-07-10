@@ -1,16 +1,18 @@
 import arg from 'arg';
 import inquirer from 'inquirer';
 import { createProject } from './intelligo-cli';
-
+import { version } from  '../package';
 function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
     {
       '--git': Boolean,
       '--yes': Boolean,
       '--install': Boolean,
+      '--version': Boolean,
       '-g': '--git',
       '-y': '--yes',
       '-i': '--install',
+      '-v': '--version',
     },
     {
       argv: rawArgs.slice(2),
@@ -21,6 +23,7 @@ function parseArgumentsIntoOptions(rawArgs) {
     git: args['--git'] || false,
     template: args._[0],
     runInstall: args['--install'] || false,
+    showVersion: args['--version'] || false,
   };
 }
 
@@ -31,6 +34,11 @@ async function promptForMissingOptions(options) {
       ...options,
       template: options.template || defaultTemplate,
     };
+  }
+
+  if (options.showVersion) {
+    console.log("Version: ");
+    return;
   }
 
   const questions = [];
