@@ -80,14 +80,10 @@ export async function createProject(options) {
     process.exit(1);
   }
 
-  const templateDir = path.resolve(TEMPLATE_DIR,
-    options.template.toLowerCase()
-  );
-
-  options.templateDirectory = templateDir;
+  options.templateDirectory = path.resolve(TEMPLATE_DIR, options.template.toLowerCase());
 
   try {
-    await access(templateDir, fs.constants.R_OK);
+    await access(options.templateDirectory, fs.constants.R_OK);
   } catch (err) {
     console.error('%s Invalid template name', chalk.red.bold('ERROR'), err);
     process.exit(1);

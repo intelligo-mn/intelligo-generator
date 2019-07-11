@@ -3,6 +3,9 @@ import inquirer from 'inquirer';
 
 import { createProject } from './intelligo-cli';
 
+const defaultTemplate = 'messenger';
+const defaultName = 'intelligo-bot';
+
 function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
     {
@@ -22,16 +25,14 @@ function parseArgumentsIntoOptions(rawArgs) {
   return {
     skipPrompts: args['--yes'] || false,
     git: args['--git'] || false,
-    template: args._[0],
-    projectName: args._[0],
+    template: defaultTemplate,
+    projectName: defaultName,
     runInstall: args['--install'] || false,
     showVersion: args['--version'] || false,
   };
 }
 
 async function promptForMissingOptions(options) {
-  const defaultTemplate = 'messenger';
-  const defaultName = 'intelligo-bot';
 
   if (options.skipPrompts) {
     return {
@@ -49,24 +50,21 @@ async function promptForMissingOptions(options) {
 
   const questions = [];
 
-  if (!options.projectName) {
-    questions.push({
-      type: 'input',
-      name: 'projectName',
-      message: 'What name would you like to use for the new project?',
-      default: defaultName,
-    });
-  }
+  questions.push({
+    type: 'input',
+    name: 'projectName',
+    message: 'What name would you like to use for the new project?',
+    default: defaultName,
+  });
 
-  if (!options.template) {
-    questions.push({
-      type: 'list',
-      name: 'template',
-      message: 'Please choose which bot template to use',
-      choices: ['messenger', 'slack'],
-      default: defaultTemplate,
-    });
-  }
+
+  questions.push({
+    type: 'list',
+    name: 'template',
+    message: 'Please choose which bot template to use',
+    choices: ['messenger', 'slack'],
+    default: defaultTemplate,
+  });
 
   if (!options.git) {
     questions.push({
