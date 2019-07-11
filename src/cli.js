@@ -25,8 +25,8 @@ function parseArgumentsIntoOptions(rawArgs) {
   return {
     skipPrompts: args['--yes'] || false,
     git: args['--git'] || false,
-    template: defaultTemplate,
-    projectName: defaultName,
+    projectName: args._[0],
+    template: args._[1],
     runInstall: args['--install'] || false,
     showVersion: args['--version'] || false,
   };
@@ -49,22 +49,24 @@ async function promptForMissingOptions(options) {
   }
 
   const questions = [];
+  if (!options.projectName) {
+    questions.push({
+      type: 'input',
+      name: 'projectName',
+      message: 'What name would you like to use for the new project?',
+      default: defaultName,
+    });
+  }
 
-  questions.push({
-    type: 'input',
-    name: 'projectName',
-    message: 'What name would you like to use for the new project?',
-    default: defaultName,
-  });
-
-
-  questions.push({
-    type: 'list',
-    name: 'template',
-    message: 'Please choose which bot template to use',
-    choices: ['messenger', 'slack'],
-    default: defaultTemplate,
-  });
+  if (!options.template) {
+    questions.push({
+      type: 'list',
+      name: 'template',
+      message: 'Please choose which bot template to use',
+      choices: ['messenger', 'slack'],
+      default: defaultTemplate,
+    });
+  }
 
   if (!options.git) {
     questions.push({
