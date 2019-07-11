@@ -80,9 +80,9 @@ async function promptForMissingOptions(options) {
   const answers = await inquirer.prompt(questions);
   return {
     ...options,
+    projectName: options.projectName || answers.projectName,
     template: options.template || answers.template,
     git: options.git || answers.git,
-    projectName: options.projectName || answers.projectName,
   };
 }
 
