@@ -37,6 +37,7 @@ async function promptForMissingOptions(options) {
   if (options.skipPrompts) {
     return {
       ...options,
+      projectName: options.projectName || defaultName,
       template: options.template || defaultTemplate,
     };
   }
@@ -48,7 +49,7 @@ async function promptForMissingOptions(options) {
     };
   }
 
-  const questions = [];
+  let questions = [];
   
   if (!options.projectName) {
     questions.push({

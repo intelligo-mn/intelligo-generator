@@ -1,6 +1,6 @@
 {
   "name": "intelligo-cli",
-  "version": "1.2.33",
+  "version": "1.2.34",
   "description": "The command line tool for Intelligo framework",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -37,8 +37,8 @@
   ],
   "homepage": "https://intelligo.js.org",
   "bin": {
-    "intelligo-cli": "node bin/intelligo",
-    "intelligo": "node bin/intelligo"
+    "intelligo-cli": "bin/intelligo",
+    "intelligo": "bin/intelligo"
   },
   "files": [
     "bin/",
