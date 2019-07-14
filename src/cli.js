@@ -25,10 +25,10 @@ function parseArgumentsIntoOptions(rawArgs) {
   return {
     skipPrompts: args['--yes'] || false,
     git: args['--git'] || false,
-    projectName: args._[0],
-    template: args._[1],
     runInstall: args['--install'] || false,
     showVersion: args['--version'] || false,
+    projectName: args._[0],
+    template: args._[1],
   };
 }
 
@@ -49,6 +49,7 @@ async function promptForMissingOptions(options) {
   }
 
   const questions = [];
+  
   if (!options.projectName) {
     questions.push({
       type: 'input',
@@ -87,8 +88,8 @@ async function promptForMissingOptions(options) {
 }
 
 export async function cli(args) {
-  let options = parseArgumentsIntoOptions(args);
-  options = await promptForMissingOptions(options);
+  let parsedOptions = parseArgumentsIntoOptions(args);
+  let options = await promptForMissingOptions(parsedOptions);
   await createProject(options);
 }
 
