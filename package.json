@@ -1,19 +1,19 @@
 {
   "name": "intelligo-cli",
-  "version": "1.2.36",
-  "description": "The command line tool for Intelligo framework",
+  "version": "1.2.37",
+  "description": "AI chatbot generator for Intelligo framework",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "main": "bin/intelligo",
   "repository": {
     "type": "git",
-    "url": "https://github.com/intelligo-systems/intelligo-cli.git"
+    "url": "https://github.com/intelligo-systems/intelligo-generator.git"
   },
   "author": "Intelligo Systems",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/intelligo-systems/intelligo-cli/issues"
+    "url": "https://github.com/intelligo-systems/intelligo-generator/issues"
   },
   "keywords": [
     "ai",
