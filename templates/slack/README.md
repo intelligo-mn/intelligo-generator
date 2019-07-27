@@ -17,7 +17,7 @@
      </a>
 </p>
 
-This project generated with [`Intelligo cli`](https://github.com/intelligo-systems/intelligo-cli) .
+This project generated with [`Intelligo chatbot generator`](https://github.com/intelligo-systems/intelligo-generator) .
 
 ## Quick Start
 
