@@ -48,7 +48,7 @@
   "dependencies": {
     "arg": "^4.1.1",
     "chalk": "^2.4.2",
-    "commander": "^2.20.0",
+    "commander": "^3.0.0",
     "config": "^3.2.0",
     "covgen": "^3.1.0",
     "esm": "^3.2.25",
