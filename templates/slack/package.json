@@ -6,6 +6,6 @@
       "start": "node index.js"
     },
     "dependencies": {
-        "intelligo": "1.0.17"
+        "intelligo": "1.0.18"
     }
   }
