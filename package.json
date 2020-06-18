@@ -56,7 +56,7 @@
     "gitignore": "^0.6.0",
     "inquirer": "^7.0.0",
     "listr": "^0.14.3",
-    "mkdirp": "^0.5.1",
+    "mkdirp": "^1.0.0",
     "ncp": "^2.0.0",
     "path": "^0.12.7",
     "pkg-install": "^1.0.0",
